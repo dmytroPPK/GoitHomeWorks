@@ -1,0 +1,6 @@
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Debug\GoitHomeWorks.exe.config
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Debug\GoitHomeWorks.exe
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Debug\GoitHomeWorks.pdb
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\obj\Debug\GoitHomeWorks.csprojResolveAssemblyReference.cache
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\obj\Debug\GoitHomeWorks.exe
+c:\users\dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\obj\Debug\GoitHomeWorks.pdb
