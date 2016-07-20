@@ -8,7 +8,8 @@ namespace Goit.TerraSoft
         {
             //HomeWork.Lesson1.Run();
             //HomeWork.Lesson2.Run();
-            HomeWork.Lesson3.Run();
+            //HomeWork.Lesson3.Run();
+            HomeWork.Lesson4.Run();
         }
     }
 }
