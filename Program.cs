@@ -14,27 +14,7 @@ namespace Goit.TerraSoft
             HomeWork.Lesson5_6.Run();
 
 
-            //List<A> list = new List<A>() {
-            //    new A(){ Name = "1"},
-            //    new A(){ Name = "2"},
-            //    new A(){ Name = "3"},
-            //    new A(){ Name = "4"},
-            //    new A(){ Name = "5"},
-            //    new A(){ Name = "6"}
-            //};
-            //foreach (var item in list)
-            //{
-            //    Console.WriteLine("class A -> name: "+ item.Name);
-            //}
-            //for (int i = 0;i<list.Count;i++)
-            //{
-            //    Console.WriteLine("name -> "+ list[i].Name);
-            //}
-            //list.Remove(list[2]);
-            //foreach (var item in list)
-            //{
-            //    Console.WriteLine("class A -> name: " + item.Name);
-            //}
+            
             
         }
     }
