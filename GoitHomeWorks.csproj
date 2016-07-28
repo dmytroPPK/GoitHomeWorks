@@ -47,6 +47,9 @@
     <Compile Include="classes\Lesson2.cs" />
     <Compile Include="classes\Lesson3.cs" />
     <Compile Include="classes\Lesson4.cs" />
+    <Compile Include="classes\Lesson56_libs\Menu.cs" />
+    <Compile Include="classes\Lesson56_libs\Scout.cs" />
+    <Compile Include="classes\Lesson5_6.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
