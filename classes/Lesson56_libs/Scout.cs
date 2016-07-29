@@ -31,20 +31,11 @@ namespace Goit.TerraSoft.HomeWork
 
         static Scout()
         {
-
-            ListOfScouts = new List<Scout>() {
-
-                
-               // new Girl(){ Name = "Veronika", Age = 6, Gender = "female" , FemaleSport = ""},
-                //new Girl(){ Name = "Kelly", Age = 12, Gender = "female", FemaleSport = "" },
-                
-                //new Boy(){ Name = "Nelly", Age = 10, Gender = "male" , MaleSport = ""},
-               // new Boy(){ Name = "JayZ", Age = 11, Gender = "male" , MaleSport = ""}
-
-            };
+            // test data
+            ListOfScouts = new List<Scout>();
 
 
-            
+
         }
 
         public void AddAward(string nameOfAward,int scoreOfAward )

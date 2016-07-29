@@ -93,7 +93,7 @@ namespace Goit.TerraSoft.HomeWork
 
             string typeOfSport= null;
             int idScout = 0;
-            int idAward = 0;
+            //int idAward = 0;
             for (int count=0;count<Scout.ListOfScouts.Count;count++)
             {
 
@@ -104,6 +104,7 @@ namespace Goit.TerraSoft.HomeWork
                 if (scoutGirl != null) { typeOfSport = scoutGirl.FemaleSport; }
                 Console.WriteLine(++idScout + " : name-> " + Scout.ListOfScouts[count].Name + " : age-> " + Scout.ListOfScouts[count].Age+ " : sport-> "+typeOfSport);
                 Console.WriteLine("\t- List of Awards - ");
+                int idAward = 0;
                 for (int i=0; i< Scout.ListOfScouts[count].AwardsScore.Count;i++)
                 {
                     Console.WriteLine("\t"+(++idAward)+" : "+Scout.ListOfScouts[count].AwardsName[i]+" : "+ Scout.ListOfScouts[count].AwardsScore[i]);
@@ -129,17 +130,130 @@ namespace Goit.TerraSoft.HomeWork
                 return;
             }
 
+            
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Enter the id of scout who will be changed by you:");
             Console.ForegroundColor = ConsoleColor.Gray;
             AllList(false);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("Enter the id of scout: ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\n\nThis Point has not been done yet !!! Sorry. ");
-            //Delay
-            Console.ReadKey();
-            //Menu.MenuOrExit();
+            int idScout = 0;
+            while (true)
+            {
+                Console.Write("Enter the id of scout: ");
+
+                if (!Int32.TryParse(Console.ReadLine(), out idScout))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("not valid type of data");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    continue;
+                }
+                else if (((idScout-1) > Scout.ListOfScouts.Count-1) || ((idScout-1)<0))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Boundary of index");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+                
+            }
+
+            idScout -= 1;
+
+            Console.Clear();
+            Console.Write("You choose - > ");
+            Console.WriteLine("name: "+ Scout.ListOfScouts[idScout].Name+" age: "+ Scout.ListOfScouts[idScout].Age);
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+            #region delete sport
+            while (true)
+            {
+                Console.Write("Do you wanna delete the sport of scout ? <yes,no>: ");
+                string prompt = Console.ReadLine().ToLower();
+                if (prompt == "yes")
+                {
+                    if (Scout.ListOfScouts[idScout] is Boy)
+                    {
+                        Boy boy = (Boy)Scout.ListOfScouts[idScout];
+                        boy.MaleSport = null;
+                    }
+                    if (Scout.ListOfScouts[idScout] is Girl)
+                    {
+                        Girl boy = (Girl)Scout.ListOfScouts[idScout];
+                        boy.FemaleSport = null;
+                    }
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\nType of sport is set by default of gender\n");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    break;
+                }
+                else if (prompt == "no")
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            #endregion
+
+            Console.WriteLine(" >> List of awards <<");
+            for (int i=0; i < Scout.ListOfScouts[idScout].AwardsScore.Count;i++)
+            {
+                Console.WriteLine("\tId: "+i+". Award: "+ Scout.ListOfScouts[idScout].AwardsName[i]+"; Score: "+ Scout.ListOfScouts[idScout].AwardsScore[i]);
+            }
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            int idOfAward = 0;
+            while (true)
+            {
+                Console.Write("Please enter id of award that will be deleted: ");
+                
+                bool idAwardCheck = Int32.TryParse(Console.ReadLine(), out idOfAward);
+
+                if (!idAwardCheck)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("not valid type of data");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    continue;
+                }
+                else if ((idOfAward > Scout.ListOfScouts[idScout].AwardsName.Count - 1) || (idOfAward < 0))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Boundary of index");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+
+            #region Remode award
+            {
+                //idOfAward   Scout.ListOfScouts[idScout].AwardsName
+                Scout.ListOfScouts[idScout].AwardsName.Remove(Scout.ListOfScouts[idScout].AwardsName[idOfAward]);
+                Scout.ListOfScouts[idScout].AwardsScore.Remove(Scout.ListOfScouts[idScout].AwardsScore[idOfAward]);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Award with id "+ idOfAward+ " was deleted!");
+                Console.ForegroundColor = ConsoleColor.Gray;
+
+                Console.WriteLine(" >> List of awards <<");
+                for (int i = 0; i < Scout.ListOfScouts[idScout].AwardsScore.Count; i++)
+                {
+                    Console.WriteLine("\tId: " + i + ". Award: " + Scout.ListOfScouts[idScout].AwardsName[i] + "; Score: " + Scout.ListOfScouts[idScout].AwardsScore[i]);
+                }
+            }
+            #endregion
+            //Console.ReadKey();
+            Menu.MenuOrExit();
 
         }
 
@@ -357,7 +471,7 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfBoys[i] = 0;
+                        maxOfBoys[i] = -1;
                     }
                     if (Scout.ListOfScouts[i] is Girl)
                     {
@@ -365,17 +479,17 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfGirls[i] = 0;
+                        maxOfGirls[i] = -1;
                     }
 
                 }
                 string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0 && maxOfBoys.Max() != -1)
                 {
                     nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
                 }
                 string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0 && maxOfGirls.Max() != -1)
                 {
                     nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
                 }
@@ -395,7 +509,7 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfBoys[i] = 0;
+                        maxOfBoys[i] = -1;
                     }
                     if (Scout.ListOfScouts[i] is Girl)
                     {
@@ -403,17 +517,17 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfGirls[i] = 0;
+                        maxOfGirls[i] = -1;
                     }
 
                 }
                 string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0 && maxOfBoys.Max() != -1)
                 {
                     nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
                 }
                 string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0 && maxOfGirls.Max() != -1)
                 {
                     nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
                 }
@@ -433,7 +547,7 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfBoys[i] = 0;
+                        maxOfBoys[i] = -1;
                     }
                     if (Scout.ListOfScouts[i] is Girl)
                     {
@@ -441,19 +555,23 @@ namespace Goit.TerraSoft.HomeWork
                     }
                     else
                     {
-                        maxOfGirls[i] = 0;
+                        maxOfGirls[i] = -1;
                     }
 
                 }
                 string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                int countAwardBoy = -1;
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0 && maxOfBoys.Max() != -1)
                 {
                     nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
+                    countAwardBoy = maxOfBoys.Max();
                 }
                 string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                int countAwardGirl = -1;
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0 && maxOfGirls.Max() != -1)
                 {
                     nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
+                    countAwardGirl = maxOfGirls.Max();
                 }
                 Console.WriteLine("Больше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
                 Console.WriteLine("Больше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
@@ -461,40 +579,44 @@ namespace Goit.TerraSoft.HomeWork
             Console.WriteLine("---------");
             //Самого большого лентяя мальчика, девочку. (меньше всего предметов)
             {
-                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
-                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
+                int[] minOfBoys = new int[Scout.ListOfScouts.Count];
+                int[] minOfGirls = new int[Scout.ListOfScouts.Count];
                 for (int i = 0; i < Scout.ListOfScouts.Count; i++)
                 {
                     if (Scout.ListOfScouts[i] is Boy)
                     {
-                        maxOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                        minOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
                     }
                     else
                     {
-                        maxOfBoys[i] = Int32.MaxValue;
+                        minOfBoys[i] = Int32.MaxValue;
                     }
                     if (Scout.ListOfScouts[i] is Girl)
                     {
-                        maxOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                        minOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
                     }
                     else
                     {
-                        maxOfGirls[i] = Int32.MaxValue;
+                        minOfGirls[i] = Int32.MaxValue;
                     }
 
                 }
                 string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                int countAwardBoy =-1;
+                if (Scout.ListOfScouts[Array.IndexOf(minOfBoys, minOfBoys.Min())].AwardsName.Count > 0 && minOfBoys.Min() != Int32.MaxValue)
                 {
-                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Min())].Name;
+                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(minOfBoys, minOfBoys.Min())].Name;
+                    countAwardBoy = minOfBoys.Min();
                 }
                 string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                int countAwardGirl =-1;
+                if (Scout.ListOfScouts[Array.IndexOf(minOfGirls, minOfGirls.Min())].AwardsName.Count > 0 && minOfGirls.Min() !=Int32.MaxValue)
                 {
-                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Min())].Name;
+                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(minOfGirls, minOfGirls.Min())].Name;
+                    countAwardGirl = minOfGirls.Min();
                 }
-                Console.WriteLine("Меньше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
-                Console.WriteLine("Меньше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
+                Console.WriteLine("Меньше всего предметов среди парней: " + countAwardBoy + ". У " + nameOfBoy);
+                Console.WriteLine("Меньше всего предметов среди девушек: " + countAwardGirl + ". У " + nameOfGirl);
             }
             Console.WriteLine("---------");
             //Средний бал за все награды у скаутов
@@ -514,7 +636,7 @@ namespace Goit.TerraSoft.HomeWork
         private static void MenuOrExit()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Press any key to exit");
+            Console.Write("\nPress any key to exit");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.Write(" OR ");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -528,6 +650,13 @@ namespace Goit.TerraSoft.HomeWork
                 Console.Clear();
                 Menu.Show();
             }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\t<<---Bye !!!--->>");
+                Console.ReadKey();
+            }
+            
         }
     }// end class Menu     console clear and show menu
 }
