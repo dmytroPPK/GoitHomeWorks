@@ -9,188 +9,17 @@ namespace Goit.TerraSoft.HomeWork
     //Menu class
     static partial class Menu
     {
-        private static void Calculate()
-        {
-
-            //Средний бал лагеря
-            {
-                int avarageCampusScore = 0;
-                Console.Clear();
-                foreach (var item in Scout.ListOfScouts)
-                {
-                    avarageCampusScore += item.AvarageScoreOfScout;
-
-                }
-                avarageCampusScore /= Scout.ListOfScouts.Count;
-                Console.WriteLine("Средний бал лагеря - " + avarageCampusScore);
-            }
-            Console.WriteLine("---------");
-            //Самый высокий средний бал дев и мальчик
-            {
-                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
-                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
-                for (int i =0;i< Scout.ListOfScouts.Count;i++)
-                {
-                    if (Scout.ListOfScouts[i] is Boy)
-                    {
-                        maxOfBoys[i] = Scout.ListOfScouts[i].AvarageScoreOfScout;
-                    }
-                    else
-                    {
-                        maxOfBoys[i] = 0;
-                    }
-                    if (Scout.ListOfScouts[i] is Girl)
-                    {
-                        maxOfGirls[i] = Scout.ListOfScouts[i].AvarageScoreOfScout;
-                    }
-                    else
-                    {
-                        maxOfGirls[i] = 0;
-                    }
-
-                }
-                string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
-                {
-                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
-                }
-                string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
-                {
-                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
-                }
-                Console.WriteLine("Мах средний бал среди парней: "+ maxOfBoys.Max()+". У "+ nameOfBoy);
-                Console.WriteLine("Мах средний бал среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
-            }
-            Console.WriteLine("---------");
-            //Самого успешного скаута – больше всего балов за все предметы (мальчик и девочка)
-            {
-                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
-                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
-                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
-                {
-                    if (Scout.ListOfScouts[i] is Boy)
-                    {
-                        maxOfBoys[i] = Scout.ListOfScouts[i].AllScoreOfScout;
-                    }
-                    else
-                    {
-                        maxOfBoys[i] = 0;
-                    }
-                    if (Scout.ListOfScouts[i] is Girl)
-                    {
-                        maxOfGirls[i] = Scout.ListOfScouts[i].AllScoreOfScout;
-                    }
-                    else
-                    {
-                        maxOfGirls[i] = 0;
-                    }
-
-                }
-                string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
-                {
-                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
-                }
-                string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
-                {
-                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
-                }
-                Console.WriteLine("Мах бал за все предметы среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
-                Console.WriteLine("Мах бал за все предметы среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
-            }
-            Console.WriteLine("---------");
-            //Самого активного скаута – больше всего предметов (мальчик и девочка)
-            {
-                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
-                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
-                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
-                {
-                    if (Scout.ListOfScouts[i] is Boy)
-                    {
-                        maxOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
-                    }
-                    else
-                    {
-                        maxOfBoys[i] = 0;
-                    }
-                    if (Scout.ListOfScouts[i] is Girl)
-                    {
-                        maxOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
-                    }
-                    else
-                    {
-                        maxOfGirls[i] = 0;
-                    }
-
-                }
-                string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
-                {
-                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
-                }
-                string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
-                {
-                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
-                }
-                Console.WriteLine("Больше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
-                Console.WriteLine("Больше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
-            }
-            Console.WriteLine("---------");
-            //Самого большого лентяя мальчика, девочку. (меньше всего предметов)
-            {
-                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
-                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
-                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
-                {
-                    if (Scout.ListOfScouts[i] is Boy)
-                    {
-                        maxOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
-                    }
-                    else
-                    {
-                        maxOfBoys[i] = 0;
-                    }
-                    if (Scout.ListOfScouts[i] is Girl)
-                    {
-                        maxOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
-                    }
-                    else
-                    {
-                        maxOfGirls[i] = 0;
-                    }
-
-                }
-                string nameOfBoy = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
-                {
-                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Min())].Name;
-                }
-                string nameOfGirl = "no-one";
-                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
-                {
-                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Min())].Name;
-                }
-                Console.WriteLine("Меньше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
-                Console.WriteLine("Меньше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
-            }
-            Console.WriteLine("---------");
-            //Средний бал за все награды у скаутов
-            {
-                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
-                {
-                    Console.WriteLine(" - Nmae: "+ Scout.ListOfScouts[i].Name + "; average score: "+Scout.ListOfScouts[i].AllScoreOfScout);
-                }
-            }
-            Console.WriteLine("---------");
-            Menu.MenuOrExit();
-            
-        }
-
+        
         private static void GirlsList()
         {
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+
             Console.WriteLine("List of Girls:");
             foreach (var item in Scout.ListOfScouts)
             {
@@ -207,6 +36,14 @@ namespace Goit.TerraSoft.HomeWork
 
         private static void BoysList()
         {
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+
             Console.WriteLine("List of Boys:");
             foreach (var item in Scout.ListOfScouts)
             {
@@ -224,6 +61,14 @@ namespace Goit.TerraSoft.HomeWork
 
         private static void ListGender()
         {
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+
             foreach (var item in Scout.ListOfScouts)
             {
                 Console.WriteLine(" - name-> " + item.Name + ": age-> " + item.Age + ": gender-> " + item.Gender);
@@ -236,6 +81,14 @@ namespace Goit.TerraSoft.HomeWork
 
         private static void AllList(bool showInteractive = true)
         {
+
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
 
 
             string typeOfSport= null;
@@ -269,6 +122,13 @@ namespace Goit.TerraSoft.HomeWork
 
         private static void DeleteSport()
         {
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Enter the id of scout who will be changed by you:");
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -285,6 +145,14 @@ namespace Goit.TerraSoft.HomeWork
 
         private static void AddSport(bool showInteractive = true)
         {
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+
             int idEnetered;
             int idList;
             
@@ -453,6 +321,196 @@ namespace Goit.TerraSoft.HomeWork
             
 
         }
+
+
+        private static void Calculate()
+        {
+
+            if (Scout.ListOfScouts.Count == 0)
+            {
+                Console.WriteLine("Add Scout to list. At present no-one is not at list");
+                Menu.MenuOrExit();
+                return;
+            }
+            //Средний бал лагеря
+            {
+                int avarageCampusScore = 0;
+                Console.Clear();
+                foreach (var item in Scout.ListOfScouts)
+                {
+                    avarageCampusScore += item.AvarageScoreOfScout;
+
+                }
+                avarageCampusScore /= Scout.ListOfScouts.Count;
+                Console.WriteLine("Средний бал лагеря - " + avarageCampusScore);
+            }
+            Console.WriteLine("---------");
+            //Самый высокий средний бал дев и мальчик
+            {
+                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
+                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
+                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
+                {
+                    if (Scout.ListOfScouts[i] is Boy)
+                    {
+                        maxOfBoys[i] = Scout.ListOfScouts[i].AvarageScoreOfScout;
+                    }
+                    else
+                    {
+                        maxOfBoys[i] = 0;
+                    }
+                    if (Scout.ListOfScouts[i] is Girl)
+                    {
+                        maxOfGirls[i] = Scout.ListOfScouts[i].AvarageScoreOfScout;
+                    }
+                    else
+                    {
+                        maxOfGirls[i] = 0;
+                    }
+
+                }
+                string nameOfBoy = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                {
+                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
+                }
+                string nameOfGirl = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                {
+                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
+                }
+                Console.WriteLine("Мах средний бал среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
+                Console.WriteLine("Мах средний бал среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
+            }
+            Console.WriteLine("---------");
+            //Самого успешного скаута – больше всего балов за все предметы (мальчик и девочка)
+            {
+                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
+                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
+                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
+                {
+                    if (Scout.ListOfScouts[i] is Boy)
+                    {
+                        maxOfBoys[i] = Scout.ListOfScouts[i].AllScoreOfScout;
+                    }
+                    else
+                    {
+                        maxOfBoys[i] = 0;
+                    }
+                    if (Scout.ListOfScouts[i] is Girl)
+                    {
+                        maxOfGirls[i] = Scout.ListOfScouts[i].AllScoreOfScout;
+                    }
+                    else
+                    {
+                        maxOfGirls[i] = 0;
+                    }
+
+                }
+                string nameOfBoy = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                {
+                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
+                }
+                string nameOfGirl = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                {
+                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
+                }
+                Console.WriteLine("Мах бал за все предметы среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
+                Console.WriteLine("Мах бал за все предметы среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
+            }
+            Console.WriteLine("---------");
+            //Самого активного скаута – больше всего предметов (мальчик и девочка)
+            {
+                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
+                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
+                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
+                {
+                    if (Scout.ListOfScouts[i] is Boy)
+                    {
+                        maxOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                    }
+                    else
+                    {
+                        maxOfBoys[i] = 0;
+                    }
+                    if (Scout.ListOfScouts[i] is Girl)
+                    {
+                        maxOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                    }
+                    else
+                    {
+                        maxOfGirls[i] = 0;
+                    }
+
+                }
+                string nameOfBoy = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                {
+                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].Name;
+                }
+                string nameOfGirl = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                {
+                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].Name;
+                }
+                Console.WriteLine("Больше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
+                Console.WriteLine("Больше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
+            }
+            Console.WriteLine("---------");
+            //Самого большого лентяя мальчика, девочку. (меньше всего предметов)
+            {
+                int[] maxOfBoys = new int[Scout.ListOfScouts.Count];
+                int[] maxOfGirls = new int[Scout.ListOfScouts.Count];
+                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
+                {
+                    if (Scout.ListOfScouts[i] is Boy)
+                    {
+                        maxOfBoys[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                    }
+                    else
+                    {
+                        maxOfBoys[i] = Int32.MaxValue;
+                    }
+                    if (Scout.ListOfScouts[i] is Girl)
+                    {
+                        maxOfGirls[i] = Scout.ListOfScouts[i].NumberOfAwards;
+                    }
+                    else
+                    {
+                        maxOfGirls[i] = Int32.MaxValue;
+                    }
+
+                }
+                string nameOfBoy = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Max())].AwardsName.Count > 0)
+                {
+                    nameOfBoy = Scout.ListOfScouts[Array.IndexOf(maxOfBoys, maxOfBoys.Min())].Name;
+                }
+                string nameOfGirl = "no-one";
+                if (Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Max())].AwardsName.Count > 0)
+                {
+                    nameOfGirl = Scout.ListOfScouts[Array.IndexOf(maxOfGirls, maxOfGirls.Min())].Name;
+                }
+                Console.WriteLine("Меньше всего предметов среди парней: " + maxOfBoys.Max() + ". У " + nameOfBoy);
+                Console.WriteLine("Меньше всего предметов среди девушек: " + maxOfGirls.Max() + ". У " + nameOfGirl);
+            }
+            Console.WriteLine("---------");
+            //Средний бал за все награды у скаутов
+            {
+                for (int i = 0; i < Scout.ListOfScouts.Count; i++)
+                {
+                    Console.WriteLine(" - Nmae: " + Scout.ListOfScouts[i].Name + "; average score: " + Scout.ListOfScouts[i].AllScoreOfScout);
+                }
+            }
+            Console.WriteLine("---------");
+            Menu.MenuOrExit();
+
+        }
+
+
+
         private static void MenuOrExit()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
