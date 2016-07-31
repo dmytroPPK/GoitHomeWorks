@@ -1,0 +1,5 @@
+C:\Users\Dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Release\GoitHomeWorks.exe.config
+C:\Users\Dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Release\GoitHomeWorks.exe
+C:\Users\Dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\bin\Release\GoitHomeWorks.pdb
+C:\Users\Dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\obj\Release\GoitHomeWorks.exe
+C:\Users\Dmytro\documents\visual studio 2015\Projects\GoitHomeWorks\obj\Release\GoitHomeWorks.pdb

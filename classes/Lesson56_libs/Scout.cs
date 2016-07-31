@@ -6,89 +6,74 @@ using System.Threading.Tasks;
 
 namespace Goit.TerraSoft.HomeWork
 {
-    class Scout
+    abstract class Scout
     {
-        public static List<Scout> ListOfScouts;
-
-        public string Name { get;  set; }
-        public int Age { get;  set; }
-        public string Gender { set; get; }
-        protected List<string> _listOfAwards = new List<string>();
-        protected List<int> _scoreOfAwards = new List<int>();
-        //public int ScoreOfExperience { get; set; }
-
-        public List<string> AwardsName { get { return _listOfAwards; } }
-        public List<int> AwardsScore { get { return _scoreOfAwards; } }
-
-        protected int _numberOfAwards;
-        protected int _allScoreOfAwards;
-        protected int _avarageScoreOfAwards;
-
-        public int AvarageScoreOfScout { get { return _avarageScoreOfAwards; } }
-        public int AllScoreOfScout { get { return _allScoreOfAwards; } }
-        public int NumberOfAwards { get { return _numberOfAwards; } }
-
+        //static
+        public static List<Scout> ListOfScout { get; protected set; }
+        
+        //this
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public List<Sport> ListOfSport { get; protected set; }
+        protected int _numberOfSports;
+        protected int _allScoreOfSports;
+        protected int _avarageScoreOfSports;
+        public int NumSports { get { return _numberOfSports; } }
+        public int AllScore { get { return _allScoreOfSports; } }
+        public int AvarScore { get { return _avarageScoreOfSports; } }
+        
 
         static Scout()
         {
-            // test data
-            ListOfScouts = new List<Scout>();
+            ListOfScout = new List<Scout>()
+            {
+                (new Boy() {Name="Patric", Age= 11}).AddSport("box",23,"good boy").AddSport("karate",35,"middle level").AddSport("shoot", 5,"do more"),
+                (new Girl() {Name="Juliya", Age= 10}).AddSport("jump",50,"very good").AddSport("run",18,"good level"),
+                (new Boy() {Name="JayZ", Age= 8}).AddSport("judo",23,"fine").AddSport(Boy.sport[3],35,"middle level").AddSport(Boy.sport[7], 42,"so good"),
+                (new Girl() {Name="Veronica", Age= 14}).AddSport(Girl.sport[7],48,"good girl.").AddSport(Girl.sport[0],35,"middle level").AddSport(Girl.sport[6], 19,"not bad but do so more")
+            };
 
-
-
+            foreach(var item in ListOfScout)
+            {
+                item.Experience();
+            }
+            
         }
-
-        public void AddAward(string nameOfAward,int scoreOfAward )
+        public Scout()
         {
-            this._listOfAwards.Add(nameOfAward);
-            this._scoreOfAwards.Add(scoreOfAward);
-
-            _numberOfAwards = _scoreOfAwards.Count;
-            foreach (int item in _scoreOfAwards)
-            {
-                _allScoreOfAwards += item;
-            }
-            _avarageScoreOfAwards = _allScoreOfAwards / _numberOfAwards;
-        } 
-    }
-
-    class Boy : Scout
-    {
-        public static string[] sport = new string[] { "box", "bjj", "wrestling", "bike", "shoot" };
-        private string _maleSport = "male kind of sport";
-
-        public string MaleSport {
-            get { return _maleSport; }
-            set
-            {
-                
-                foreach (var item in Girl.sport)
-                {
-                    if (value == item) { _maleSport = value; break; }
-                }
-            }
+            this.ListOfSport = new List<Sport>();
         }
-        
-    }
-    class Girl : Scout
-    {
-        public static string[] sport = new string[] { "swim", "run", "jump", "box", "shoot" };
-
-        private string _femaleSport = "female kind of sport";
-
-        public string FemaleSport
+        public void Experience()
         {
-            get { return _femaleSport; }
-            set
+            if (this.ListOfSport != null && this.ListOfSport.Count != 0)
             {
-                
-                foreach (var item in Girl.sport)
+                foreach (var item in this.ListOfSport)
                 {
-                    if (value == item) { _femaleSport = value; break; }  
+                    _allScoreOfSports += item.Score;
                 }
+                _numberOfSports = this.ListOfSport.Count;
+                _avarageScoreOfSports = _allScoreOfSports / _numberOfSports;
+            }
+            else
+            {
+                _allScoreOfSports = 0;
+                _numberOfSports = -1;
+                _avarageScoreOfSports = 0;
+
             }
         }
-        
+        public Scout AddSport(string nameSport, int scoreOfSport, string msgAward)
+        {
+            this.ListOfSport.Add(new Sport {
+                Name = nameSport,
+                Score = scoreOfSport,
+                MsgAward = msgAward
+            });
+            return this;
+        }
+        public void DeleteSport(int idOfSport)
+        {
+            this.ListOfSport.RemoveAt(idOfSport);
+        }
     }
-
 }

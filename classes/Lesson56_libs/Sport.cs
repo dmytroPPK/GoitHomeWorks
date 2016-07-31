@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Goit.TerraSoft.HomeWork
 {
-    class Lesson5_6
+    class Sport
     {
-        public static void Run()
-        {
-            Menu.Show();
-            
-        }
+        public string Name { get; set; }
+        public int Score { get; set; }
+        public string MsgAward { get; set; }
+
     }
-    
 }
